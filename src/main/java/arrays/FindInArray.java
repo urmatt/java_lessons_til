@@ -34,4 +34,13 @@ public class FindInArray {
         if (!searchableFound)
             System.out.println(searchable + " не найден");
     }
+
+    /**
+     * Возвращает сумму всех элементов
+     *
+     * @param array
+     */
+    public static void sumOf(int[] array) {
+
+    }
 }

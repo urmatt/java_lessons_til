@@ -138,10 +138,15 @@ public class XOWinner {
 
     private static void print2DArray(String[][] array) {
         println(ConsoleColors.PURPLE_BOLD_BRIGHT + " -------------");
-        for (String[] subArray : array) {
+        // {
+        //   {"", "", ""},
+        //   {"", "", ""},
+        //   {"", "", ""},
+        // }
+        for (String[] subArray : array) { // subArray = {"", "", ""}
             print(ConsoleColors.PURPLE_BOLD_BRIGHT + " | ");
             for (String value : subArray) {
-                if (value == null || value.isEmpty())
+                if (value == null || value.isEmpty()) // ""
                     print(ConsoleColors.PURPLE_BOLD_BRIGHT + "  | ");
                 else if(value.equals("X"))
                     print(ConsoleColors.YELLOW_BOLD_BRIGHT + value + ConsoleColors.PURPLE_BOLD_BRIGHT + " | ");

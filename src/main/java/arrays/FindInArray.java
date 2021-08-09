@@ -8,8 +8,10 @@ public class FindInArray {
                 {-1, 4, -675, -367, 5346, 34227, 3436},
                 {-1, 4, -675, -367, 5346, 34227, 3436}
         };
-        whereIs(3436, intArray);
-
+//        whereIs(3436, intArray);
+//        int sumOf = sumOf(new int[]{5, 6, 4, 7});//0
+//        System.out.println("Сумма всех в массиве: " + sumOf);
+        System.out.println("Сумма двумерного массива: " + sumOfDoubleArray(intArray));
     }
 
     /**
@@ -40,7 +42,36 @@ public class FindInArray {
      *
      * @param array
      */
-    public static void sumOf(int[] array) {
+    //                                       0  1  2  3
+    public static int sumOf(int[] array) {//{5, 6, 4, 7} / 4
+        int a = 0; // 15
 
+        for (int i = 0; i < array.length; i++) {// i = 2; (0 < 4) false
+            a += array[i];//array[2]
+        }
+        return a;
     }
+
+    public static int sumOfForEach(int[] array) {//{5, 6, 4, 7} / 4
+        int a = 0; // 15
+
+        for (int element : array) {// element = 7
+            a += element;//array[2]
+        }
+        return a;
+    }
+
+    public static int sumOfDoubleArray(int[][] array) {
+        int a = 0;
+        int length = 0;
+        for (int[] element1 : array) {//
+            length += element1.length;
+
+            for (int element2 : element1) {
+                a += element2;
+            }
+        }
+        return a;
+    }
+
 }

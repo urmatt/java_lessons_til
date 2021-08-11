@@ -1,37 +1,52 @@
 package arrays;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ObjectArrays {
+
+    static Category smartphone = new Category("Smartphone");
+    static Category monitor = new Category("Monitor");
+    static Category cpu = new Category("CPU");
+
     static Product[] products = new Product[]{
-            new Product(1000, "Apple", "iPhone 12 mini"),
-            new Product(1100, "Apple", "iPhone 12"),
-            new Product(1200, "Apple", "iPhone 12 Pro"),
-            new Product(700, "Xiaomi", "Mi 12 Lite"),
-            new Product(800, "Xiaomi", "Mi 12"),
-            new Product(990, "Xiaomi", "Mi 12 Pro"),
-            new Product(800, "Samsung", "A10 a"),
-            new Product(900, "Samsung", "A10 b"),
-            new Product(970, "Samsung", "A10 c"),
+            new Product(1000, "Apple", "iPhone 12 mini", smartphone),
+            new Product(1100, "Apple", "iPhone 12", smartphone),
+            new Product(1200, "Apple", "iPhone 12 Pro", smartphone),
+            new Product(700, "Xiaomi", "Mi 12 Lite", smartphone),
+            new Product(800, "Xiaomi", "Mi 12", smartphone),
+            new Product(990, "Xiaomi", "Mi 12 Pro", smartphone),
+            new Product(800, "Samsung", "A10 a", smartphone),
+            new Product(900, "Samsung", "A10 b", smartphone),
+            new Product(970, "Samsung", "A10 c", smartphone),
+            new Product(400, "Samsung", "X10", monitor),
+            new Product(550, "Samsung", "Y20", monitor),
+            new Product(350, "Intel", "Core i5", cpu),
+            new Product(420, "AMD", "Radeon X", cpu),
     };
 
     public static void main(String[] args) {
-//        System.out.println("Samsung: " + sumOfProductFor("Samsung"));
-//        System.out.println("Xiaomi: " + sumOfProductFor("Xiaomi"));
-//        System.out.println("Apple: " + sumOfProductFor("Apple"));
-//
-        List<Product> nameProducts = searchByName("M");
-            for (Product pr : nameProducts) {
-                printProductInfo(pr);
-            }
+        for (Product pr : products) {
+            printProductInfo(pr);
+        }
 
-//        List<Product> findProd = searchInPrice(900, 1100);
-//        for (Product pr : findProd) {
-//            printProductInfo(pr);
-//        }
+        Map<Category, List<Product>> categorised = new HashMap<>();
+
+        for (Product prod :
+                products) {
+            if (categorised.get(prod.category) == null)
+                categorised.put(prod.category, new ArrayList<>());
+
+        }
+
+        /* TODO:
+         {
+            Category : [Product, ...]
+         }
+
+         Заполнить Map "categorised" продуктами
+         */
     }
 
     private static int sumOfProductFor(String owner) {
@@ -46,6 +61,7 @@ public class ObjectArrays {
 
     /**
      * Поиск по совпадению начала имени
+     *
      * @param name
      * @return
      */
@@ -64,7 +80,7 @@ public class ObjectArrays {
         for (Product product : products) {
             // 990
             //        900 <= 990           &&    1000 >= 990
-            if (fromPrice <= product.price && toPrice >= product.price){
+            if (fromPrice <= product.price && toPrice >= product.price) {
                 findProducts.add(product);
             }
         }
@@ -76,8 +92,18 @@ public class ObjectArrays {
             System.out.println("Product name: " + product.name);
             System.out.println("owner: " + product.owner);
             System.out.println("price: " + product.price);
+            System.out.println("Category: " + product.category.name);
+            System.out.println("---------------------------");
         } else {
             System.out.println("Product is null");
+        }
+    }
+
+    static class Category {
+        String name;
+
+        Category(String name) {
+            this.name = name;
         }
     }
 
@@ -85,11 +111,13 @@ public class ObjectArrays {
         int price;
         String owner;
         String name;
+        Category category;
 
-        Product(int price, String owner, String name) {
+        Product(int price, String owner, String name, Category category) {
             this.price = price;
             this.owner = owner;
             this.name = name;
+            this.category = category;
         }
     }
 }

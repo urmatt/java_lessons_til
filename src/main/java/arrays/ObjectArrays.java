@@ -1,8 +1,5 @@
 package arrays;
-
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ObjectArrays {
 
@@ -24,30 +21,65 @@ public class ObjectArrays {
             new Product(550, "Samsung", "Y20", monitor),
             new Product(350, "Intel", "Core i5", cpu),
             new Product(420, "AMD", "Radeon X", cpu),
+            new Product(480, "Intel", "Core i7", cpu),
     };
 
     public static void main(String[] args) {
-        for (Product pr : products) {
-            printProductInfo(pr);
-        }
+//        for (Product pr : products) {
+//            printProductInfo(pr);
+ //   }
 
         Map<Category, List<Product>> categorised = new HashMap<>();
 
-        for (Product prod :
-                products) {
-            if (categorised.get(prod.category) == null)
-                categorised.put(prod.category, new ArrayList<>());
+        List<Product> smartphones = new ArrayList<>();
+        List<Product> cpus = new ArrayList<>();
+        List<Product> monitors = new ArrayList<>();
 
+//        for (Product prod : products) {
+//            if (categorised.get(prod) == null) {
+//                categorised.put(prod.category, new ArrayList<>());
+//            }
+//        }
+//      categorised.putIfAbsent(prod.category, new ArrayList<Product>());
+
+        for (Product pro : products){
+            if (pro.category == smartphone) {
+                smartphones.add(pro);
+                categorised.put(smartphone, smartphones);
+            } else if (pro.category == cpu) {
+                cpus.add(pro);
+                categorised.put(cpu, cpus);
+            }else if (pro.category == monitor) {
+                monitors.add(pro);
+                categorised.put(monitor, monitors);
+            } else {
+                System.out.println("Error");
+            }
         }
 
-        /* TODO:
-         {
-            Category : [Product, ...]
-         }
+        //printMap(categorised);
+        printMap2(categorised.get(smartphone));
 
-         Заполнить Map "categorised" продуктами
-         */
     }
+    private static void printMap(Map<Category, List<Product>> map) {
+        for (Category key : map.keySet()) {
+            System.out.println(key.name + " : " + map.get(key));
+        }
+    }
+    private static void printMap2(List<Product> list) {
+        for (Product pp : list) {
+            if (pp != null) {
+                System.out.println("Product name: " + pp.name);
+                System.out.println("owner: " + pp.owner);
+                System.out.println("price: " + pp.price);
+                System.out.println("Category: " + pp.category.name);
+                System.out.println("---------------------------");
+            } else {
+                System.out.println("Product is null");
+            }
+        }
+    }
+
 
     private static int sumOfProductFor(String owner) {
         int a = 0;
@@ -59,12 +91,6 @@ public class ObjectArrays {
         return a;
     }
 
-    /**
-     * Поиск по совпадению начала имени
-     *
-     * @param name
-     * @return
-     */
     private static List<Product> searchByName(String name) {
         List<Product> findName = new ArrayList<>();
         for (Product prod : products) {
@@ -80,7 +106,7 @@ public class ObjectArrays {
         for (Product product : products) {
             // 990
             //        900 <= 990           &&    1000 >= 990
-            if (fromPrice <= product.price && toPrice >= product.price) {
+            if (fromPrice <= product.price && toPrice >= product.price){
                 findProducts.add(product);
             }
         }

@@ -32,65 +32,29 @@ public class ObjectArrays {
         //   }
 
         Map<Category, List<Product>> categorised = new HashMap<>();
-        /*
-        {
-            smartphone : [
-                Product(1000, "Apple", "iPhone 12 mini", smartphone),
-                Product(1100, "Apple", "iPhone 12", smartphone),
-                ...
-            ],
-            monitor : [
-                Product(400, "Samsung", "X10", monitor),
-                Product(550, "Samsung", "Y20", monitor)
-            ]
-        }
-         */
 
-
-        for (Product prod : products) {// 10 - Product(550, "Samsung", "Y20", monitor)
-            if (categorised.get(prod.category) == null) {// false
+        for (Product prod : products) {
+            if (categorised.get(prod.category) == null) {
                 categorised.put(prod.category, new ArrayList<>());
             }
             categorised.get(prod.category).add(prod);
         }
 
 
-        List<Product> searched = findByPriceInMap(800, monitor, categorised);
+        List<Product> searched = findByPriceInMap(800, smartphone, categorised);
 
-        System.out.println("Смартфоны по 800:");
+        System.out.println("********** Найденные товары : **********\n");
         for (Product p : searched) {
             printProductInfo(p);
         }
-//        List<Product> smartphones = new ArrayList<>();
-//        List<Product> cpus = new ArrayList<>();
-//        List<Product> monitors = new ArrayList<>();
-//        for (Product pro : products) {
-//            if (pro.category == smartphone) {
-//                smartphones.add(pro);
-//            } else if (pro.category == cpu) {
-//                cpus.add(pro);
-//
-//            } else if (pro.category == monitor) {
-//                monitors.add(pro);
-//
-//            } else {
-//                System.out.println("Error");
-//            }
-//        }
-//        categorised.put(smartphone, smartphones);
-//        categorised.put(cpu, cpus);
-//        categorised.put(monitor, monitors);
-
 //        printMap(categorised);
-
-
     }
 
     private static void printMap(Map<Category, List<Product>> map) {
-        for (Category key : map.keySet()) {// SET [monitor, smartphone, cpu]
+        for (Category key : map.keySet()) {
             System.out.println("===========  " + key.name + "  =============");
             List<Product> innerList = map.get(key);
-            for (Product pr : innerList) {// pr -> [Product(),Product()]
+            for (Product pr : innerList) {
                 printProductInfo(pr);
             }
         }
@@ -105,8 +69,13 @@ public class ObjectArrays {
      * @return - список товаров
      */
     private static List<Product> findByPriceInMap(int price, Category category, Map<Category, List<Product>> map) {
-
-        return null;
+        List<Product> findPrice = new ArrayList<>();
+        for (Product ppp : map.get(category)){
+            if (ppp.price == price){
+                findPrice.add(ppp);
+            }
+        }
+        return findPrice;
     }
 
     private static int sumOfProductFor(String owner) {

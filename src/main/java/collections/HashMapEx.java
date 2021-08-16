@@ -12,6 +12,7 @@ public class HashMapEx {
 
         System.out.println(mountNames.keySet());
         System.out.println(mountNames.values());
+        System.out.println(mountNames.get(1));
 
         print(mountNames);
     }

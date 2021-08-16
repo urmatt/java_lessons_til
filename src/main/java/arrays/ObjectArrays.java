@@ -57,8 +57,8 @@ public class ObjectArrays {
             }
         }
 
-        //printMap(categorised);
-        printMap2(categorised.get(smartphone));
+        printMap(categorised);
+
 
     }
     private static void printMap(Map<Category, List<Product>> map) {
@@ -66,21 +66,6 @@ public class ObjectArrays {
             System.out.println(key.name + " : " + map.get(key));
         }
     }
-    private static void printMap2(List<Product> list) {
-        for (Product pp : list) {
-            if (pp != null) {
-                System.out.println("Product name: " + pp.name);
-                System.out.println("owner: " + pp.owner);
-                System.out.println("price: " + pp.price);
-                System.out.println("Category: " + pp.category.name);
-                System.out.println("---------------------------");
-            } else {
-                System.out.println("Product is null");
-            }
-        }
-    }
-
-
     private static int sumOfProductFor(String owner) {
         int a = 0;
         for (Product pro : products) {

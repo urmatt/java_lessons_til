@@ -37,7 +37,6 @@ public class RandomEx {
         String[] words4 = new String[]{"дерево", "телефон", "луна", "книга", "одежда", "корова", "трактор"};
         String[] words5 = new String[]{"хорошо", "далеко", "круто", "весело", "ярко", "тепло", "жидко"};
         String[] words6 = new String[]{".", "!", "?", "!?"};
-        // TODO generate random string from words1-5
 
         strings[0] = words1[random.nextInt(words1.length)];
         strings[1] = words2[random.nextInt(words2.length)];
